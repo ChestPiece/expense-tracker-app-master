@@ -10,7 +10,11 @@ import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { GithubIcon } from "@/components/icons/GithubIcon";
 import { useSocialAuth } from "@/hooks/useSocialAuth";
 
-export function LoginForm() {
+interface LoginFormProps {
+  onForgotPasswordClick: () => void;
+}
+
+export function LoginForm({ onForgotPasswordClick }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -185,6 +189,10 @@ export function LoginForm() {
               <Link
                 href="/reset-password"
                 className="pixel-text text-sm text-[#ff4500] hover:underline"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onForgotPasswordClick();
+                }}
               >
                 Forgot Password?
               </Link>
